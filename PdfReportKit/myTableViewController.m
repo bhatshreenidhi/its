@@ -26,16 +26,36 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"class_list" ofType:@"csv"];
+    NSString *testString = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
+   
+    
+    NSArray *data = [testString componentsSeparatedByString:@"\n"];
+    
+    
+    
     self.articles = [NSMutableArray array];
-    for(int count=0;count<10;count++)
+    
+    for(int count=0;count<[data count];count++)
     {
+        NSArray *info = [[data objectAtIndex:count] componentsSeparatedByString:@","];
+        NSArray *roomInfo = [[info objectAtIndex:0] componentsSeparatedByString:@" "];
+        NSArray *countArray = [[info objectAtIndex:1] componentsSeparatedByString:@"/"];
+        
+        
         Classroom *c1 = [[Classroom alloc] init];
-        c1.building = @"WPH";
-        c1.roomNo = [c1.building stringByAppendingString:[NSString stringWithFormat:@"%d",count]];
-        c1.SC = 10;
-        c1.ST = 10;
-        c1.IC = 10;
-        c1.IT = 10;
+        c1.building = [roomInfo objectAtIndex:0];
+        c1.roomNo = [roomInfo objectAtIndex:1];
+        if([countArray count]==4)
+        {
+            c1.SC = [countArray objectAtIndex:0];
+            c1.ST = [countArray objectAtIndex:1];
+            c1.IC = [countArray objectAtIndex:2];
+            c1.IT = [[countArray objectAtIndex:3]stringByReplacingOccurrencesOfString:@"\r" withString:@""];
+            
+        }
         c1.isIC = TRUE;
         c1.isIT = TRUE;
         c1.isSC = TRUE;
