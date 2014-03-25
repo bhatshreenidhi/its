@@ -10,6 +10,7 @@
 #import "PRKGenerator.h"
 #import "PRKRenderHtmlOperation.h"
 #import "InvoiceItem.h"
+#import "Classroom.h"
 
 @interface ViewController ()
 
@@ -22,39 +23,48 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    double total = 0;
     NSMutableArray * articles = [NSMutableArray array];
-    for (int i = 0; i < 200; i++) {
-        int element = i + 123456;
-        InvoiceItem * item = [[InvoiceItem alloc] init];
-        item.number = element;
-        NSDateFormatter * formatter = [[NSDateFormatter alloc] init];
-        formatter.dateFormat = @"dd/MM/yyyy";
+    /*NSFileManager *filemanager = [[NSFileManager alloc] init];
+    NSString *path= @"/Users/shreenidhibhat/projGithub/PdfReportKit/1.csv";
+    
+    if([filemanager fileExistsAtPath:path]){
         
-        item.date = [formatter stringFromDate:[NSDate date]];
-        item.due = [formatter stringFromDate:[[NSDate date] dateByAddingTimeInterval:30 * 24 * 60 * 60]];
-        item.notes = @"";
-        item.originalTotal = element;
-        item.effectiveTotal = element;
-        item.receivedTotal = element * 0.8;
-        
-        total += item.receivedTotal;
-        [articles addObject:item];
+        NSLog(@"File exists");
     }
-
-    defaultValues = @{
-        @"articles"         : articles,
-        @"companyName"      : @"Teseo s.r.l.",
-        @"companyAddress"   : @"Via A. Carrante, 31",
-        @"companyTelephone" : @"0802205198",
-        @"companyEmail"     : @"info@teseo.it",
-        @"otherCompanyName" : @"Rossi Paolo s.r.l.",
-        @"total"            : [NSString stringWithFormat: @"%f", total]
-    };
+    else{
+        NSLog(@"Does not exists");
+    }
+    
+    NSData *data = [filemanager contentsAtPath:path];
+    */
+    
+    
+    for(int count=0;count<10;count++)
+    {
+        Classroom *c1 = [[Classroom alloc] init];
+        c1.building = @"WPH";
+        c1.roomNo = [c1.building stringByAppendingString:[NSString stringWithFormat:@"%d",count]];
+        c1.SC = 10;
+        c1.ST = 10;
+        c1.IC = 10;
+        c1.IT = 10;
+        c1.isIC = TRUE;
+        c1.isIT = TRUE;
+        c1.isSC = TRUE;
+        c1.isST = TRUE;
+        c1.endTime = @"6:30 PM";
+        [articles addObject:c1];
+            }
+    
+       defaultValues = @{
+        @"articles"  : articles,
+        @"date"      : @"03/30/2014",
+        @"completedBy": @"Nikhil M M",
+        };
     
     NSError * error;    
-    NSString * templatePath = [[NSBundle mainBundle] pathForResource:@"template1" ofType:@"mustache"];
-    [[PRKGenerator sharedGenerator] createReportWithName:@"template1" templateURLString:templatePath itemsPerPage:100 totalItems:articles.count pageOrientation:PRKLandscapePage dataSource:self delegate:self error:&error];
+    NSString * templatePath = [[NSBundle mainBundle] pathForResource:@"template2" ofType:@"mustache"];
+    [[PRKGenerator sharedGenerator] createReportWithName:@"template2" templateURLString:templatePath itemsPerPage:100 totalItems:articles.count pageOrientation:PRKLandscapePage dataSource:self delegate:self error:&error];
 }
 
 - (void)didReceiveMemoryWarning

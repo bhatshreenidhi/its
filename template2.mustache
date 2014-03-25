@@ -13,79 +13,20 @@
                 padding: 20px;
             }
             
-            .header img
-            {
-                width: 100px;
-                height: 100px;
-                float: left;
-                
-                margin-right: 10px;
-            }
-            
-            .header .myCompany
-            {
-                float: left;
-                font-size: smaller;
-                margin-top: -20px;
-            }
-            
-            .header .otherCompany
-            {
-            	float: right;
-            	padding: 15px;
-            	border: 1px solid lightgray;
-            	background-color: #fafafa;
-                font-size: smaller;
-            }
-            
-            .content
-            {
-                margin-top: 20px;
-                padding: 30px;
-                border: 1px solid lightgray;
-                background: #fcfcfc;
-                border-radius: 3px;
-            }
-            
+
             table
             {
-                width: 100%;
+
+                border : 1;
                 font-size: smaller;
             }
             
-            tr:nth-child(even)
-            {
-                background-color: #f0f0f0;
-            }
-            
-            tr th
-            {
-                color: gray;        
-                border-bottom: 1px solid lightgray;
-            }
-            
-            tr th, tr td
-            {
-                font-weight: normal;
-                padding: 5px;
-                margin: 0;
-                width: 20%;
-                text-align: center;
-            }
-            
-            td
-            {
-                font-size: smaller;
-            }
-            
-            .footer
-            {
-                font-size: 12px;
-                padding: 20px;
-                margin: 0;
-                text-align: right;
-                
-            }
+            .tftable {font-size:12px;color:#333333;width:100%;border-width: 1px;border-color: #729ea5;border-collapse: collapse;}
+            .tftable th {font-size:12px;background-color:#acc8cc;border-width: 1px;padding: 8px;border-style: solid;border-color: #729ea5;text-align:left;}
+            .tftable tr {background-color:#ffffff;}
+            .tftable td {font-size:12px;border-width: 1px;padding: 8px;border-style: solid;border-color: #729ea5;}
+
+
         </style>
         <meta name="viewport" id="view" content="width=320px, minimum-scale=1.0, maximum-scale=1.0">
     </head>
@@ -100,62 +41,49 @@
             
 
             <div class='myCompany'>
-                <h1>{{companyName}}</h1>
-                {{companyAddress}} <br />
-                {{companyTelephone}} <br />
-                {{companyEmail}}
-            </div>
-            
-            <div class='otherCompany'>
-            	<b>Spett.le {{otherCompanyName}}, </b><br />
-            	Via da definire, 1 <br />
-            	70100 Bari (BA)
+                <h1>{{date}}</h1>
+                {{completedBy}} <br />
             </div>
         </div>
         {{/pageHeader}}
         
         {{#pageContent}}  
-        <div class='content' style='padding: 5px;'>
-        <table cellspacing='0'>
-        	<tr>
-        		<td><b>Codice Cliente:</b> 5</td>
-        		<td><b>Telefono:</b> 3339998887</td>
-        		<td><b>Agente:</b> Mario Verdi</td>
-                <td><b>Data Stampa:</b> 09/11/2012</td>
-        	</tr>
-        </table>
-        </div>
              
 
-        <div class='content'>
-            <table cellspacing='0'>
+        <div>
+            <table class="tftable" border="1">
                 <tr>
-                    <th>Numero Doc.</th>
-                    <th>Data Doc.</th>
-                    <th>Data Scad.</th>
-                    <th>Note Incasso</th>
-                    <th>Importo Originario</th>
-                    <th>Importo Effettivo</th>
-                    <th>Importo Incassato</th>
+                    <th width="50px">Room No.</th>
+                    <th width="25px">SC</th>
+                    <th width="25px">Y/N</th>
+                    <th width="25px">IC</th>
+                    <th width="25px">Y/N</th>
+                    <th width="25px">IT</th>
+                    <th width="25px">Y/N</th>
+                    <th width="25px">ST</th>
+                    <th width="25px">Y/N</th>
+                    <th width="50px">Last Class Time</th>
+                    <th width="150px">Remarks</th>
                 </tr>
                 
                 {{#articles}}
                 <tr>
-                    <td>{{number}}</td>
-                    <td>{{date}}</td>
-                    <td>{{due}}</td>
-                    <td>{{notes}}</td>
-                    <td>€ {{originalTotal}}</td>
-                    <td>€ {{effectiveTotal}}</td>
-                    <td>€ {{receivedTotal}}</td>
+                    <td>{{roomNo}}</td>
+                    <td>{{SC}}</td>
+                    <td>{{isSC}}</td>
+                    <td>{{IC}}</td>
+                    <td>{{isIC}}</td>
+                    <td>{{IT}}</td>
+                    <td>{{isIT}}</td>
+                    <td>{{ST}}</td>
+                    <td>{{isST}}</td>
+                    <td>{{endTime}}</td>
+                    <td>{{remarks}}</td>
                 </tr>
                 {{/articles}}
             </table>
         </div>
         
-        <div class='content' style='width: 250px; float: right; font-size: smaller'>
-            <b>Saldo totale: </b>{{total}}
-        </div>
         {{/pageContent}}
 
         {{#pageFooter}}

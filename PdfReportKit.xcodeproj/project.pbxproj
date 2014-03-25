@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		53F9A22118D65D9500578940 /* ClosingReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F9A22018D65D9500578940 /* ClosingReport.m */; };
+		53F9A22518D66AC800578940 /* template2.mustache in Resources */ = {isa = PBXBuildFile; fileRef = 53F9A22418D66AC800578940 /* template2.mustache */; };
+		53F9A22718D66CB700578940 /* Classroom.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F9A22318D65F0F00578940 /* Classroom.m */; };
 		A90C60F0165F720D006337D9 /* InvoiceItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A90C60EE165F710C006337D9 /* InvoiceItem.m */; };
 		A9250A1D165D0DCB007EEDA2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9250A1C165D0DCB007EEDA2 /* UIKit.framework */; };
 		A9250A1F165D0DCB007EEDA2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9250A1E165D0DCB007EEDA2 /* Foundation.framework */; };
@@ -30,6 +33,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		53F9A21F18D65D9500578940 /* ClosingReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClosingReport.h; sourceTree = "<group>"; };
+		53F9A22018D65D9500578940 /* ClosingReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClosingReport.m; sourceTree = "<group>"; };
+		53F9A22218D65F0F00578940 /* Classroom.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Classroom.h; sourceTree = "<group>"; };
+		53F9A22318D65F0F00578940 /* Classroom.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Classroom.m; sourceTree = "<group>"; };
+		53F9A22418D66AC800578940 /* template2.mustache */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = template2.mustache; sourceTree = SOURCE_ROOT; };
 		A90C60ED165F710C006337D9 /* InvoiceItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InvoiceItem.h; sourceTree = "<group>"; };
 		A90C60EE165F710C006337D9 /* InvoiceItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InvoiceItem.m; sourceTree = "<group>"; };
 		A9250A18165D0DCB007EEDA2 /* PdfReportKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PdfReportKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -113,8 +121,12 @@
 		A9250A22165D0DCB007EEDA2 /* PdfReportKit */ = {
 			isa = PBXGroup;
 			children = (
+				53F9A22218D65F0F00578940 /* Classroom.h */,
+				53F9A22318D65F0F00578940 /* Classroom.m */,
 				A90C60ED165F710C006337D9 /* InvoiceItem.h */,
 				A90C60EE165F710C006337D9 /* InvoiceItem.m */,
+				53F9A21F18D65D9500578940 /* ClosingReport.h */,
+				53F9A22018D65D9500578940 /* ClosingReport.m */,
 				A9250A2B165D0DCB007EEDA2 /* AppDelegate.h */,
 				A9250A2C165D0DCB007EEDA2 /* AppDelegate.m */,
 				A9250A34165D0DCC007EEDA2 /* MainStoryboard_iPhone.storyboard */,
@@ -148,6 +160,7 @@
 		A9250A45165D0E17007EEDA2 /* PRKLibrary */ = {
 			isa = PBXGroup;
 			children = (
+				53F9A22418D66AC800578940 /* template2.mustache */,
 				A9250A42165D0E0B007EEDA2 /* PRKGenerator.h */,
 				A9250A43165D0E0B007EEDA2 /* PRKGenerator.m */,
 				A9250A46165D0E5A007EEDA2 /* PRKGeneratorDataSource.h */,
@@ -222,6 +235,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				53F9A22518D66AC800578940 /* template2.mustache in Resources */,
 				A9250A27165D0DCB007EEDA2 /* InfoPlist.strings in Resources */,
 				A9250A2F165D0DCC007EEDA2 /* Default.png in Resources */,
 				A9250A31165D0DCC007EEDA2 /* Default@2x.png in Resources */,
@@ -239,6 +253,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				53F9A22718D66CB700578940 /* Classroom.m in Sources */,
 				A90C60F0165F720D006337D9 /* InvoiceItem.m in Sources */,
 				A9250A29165D0DCB007EEDA2 /* main.m in Sources */,
 				A9250A2D165D0DCB007EEDA2 /* AppDelegate.m in Sources */,
@@ -246,6 +261,7 @@
 				A9250A44165D0E0B007EEDA2 /* PRKGenerator.m in Sources */,
 				A9250A59165D2D36007EEDA2 /* Person.m in Sources */,
 				A9250A5C165D3DA0007EEDA2 /* PRKPageRenderer.m in Sources */,
+				53F9A22118D65D9500578940 /* ClosingReport.m in Sources */,
 				A9A5C6FB165E3623001B4AFE /* PRKRenderHtmlOperation.m in Sources */,
 				A9A5C716165E8DAB001B4AFE /* PRKFakeRenderer.m in Sources */,
 			);
