@@ -10,17 +10,17 @@
 
 @interface Classroom : NSObject
 
-@property (nonatomic,retain) NSString * roomNo;
-@property (nonatomic,assign) int SC;
-@property (nonatomic,assign) int IC;
-@property (nonatomic,assign) int IT;
-@property (nonatomic,assign) int ST;
-@property (nonatomic,assign) BOOL isSC;
-@property (nonatomic,assign) BOOL isIC;
-@property (nonatomic,assign) BOOL isIT;
-@property (nonatomic,assign) BOOL isST;
-@property (nonatomic,retain) NSString * endTime;
-@property (nonatomic,retain) NSString * remarks;
-@property (nonatomic,retain) NSString * building;
+@property (nonatomic,strong) NSString * roomNo;
+@property (nonatomic,strong) NSString * sc_count;
+@property (nonatomic,strong) NSString * ic_count;
+@property (nonatomic,strong) NSString * it_count;
+@property (nonatomic,strong) NSString * st_count;
+@property (nonatomic) BOOL isSC;
+@property (nonatomic) BOOL isIC;
+@property (nonatomic) BOOL isIT;
+@property (nonatomic) BOOL isST;
+@property (nonatomic,strong) NSString * endTime;
+@property (nonatomic,strong) NSString * remarks;
+@property (nonatomic,strong) NSString * building;
 
 @end

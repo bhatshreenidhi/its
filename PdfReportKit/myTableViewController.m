@@ -9,7 +9,8 @@
 #import "myTableViewController.h"
 #import "Classroom.h"
 @interface myTableViewController ()
-@property (nonatomic,retain) NSMutableArray *articles;
+@property (nonatomic,strong) NSMutableArray *articles;
+
 @end
 
 @implementation myTableViewController
@@ -26,7 +27,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"class_list" ofType:@"csv"];
     NSString *testString = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
@@ -50,10 +50,10 @@
         c1.roomNo = [roomInfo objectAtIndex:1];
         if([countArray count]==4)
         {
-            c1.SC = [countArray objectAtIndex:0];
-            c1.ST = [countArray objectAtIndex:1];
-            c1.IC = [countArray objectAtIndex:2];
-            c1.IT = [[countArray objectAtIndex:3]stringByReplacingOccurrencesOfString:@"\r" withString:@""];
+            c1.sc_count = [countArray objectAtIndex:0];
+            c1.st_count = [countArray objectAtIndex:1];
+            c1.ic_count = [countArray objectAtIndex:2];
+            c1.it_count = [[countArray objectAtIndex:3]stringByReplacingOccurrencesOfString:@"\r" withString:@""];
             
         }
         c1.isIC = TRUE;
@@ -64,13 +64,24 @@
         [self.articles addObject:c1];
     }
     [self.tableView reloadData];
+     self.detailViewController = (myDetailViewController *)[self.splitViewController.viewControllers lastObject];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(nextRoom)
+                                                 name:@"nextRequest"
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(prevRoom)
+                                                 name:@"prevRequest"
+                                               object:nil];
 }
-
+-(void)viewDidUnload{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -88,7 +99,6 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
     return self.articles.count;
 }
@@ -104,7 +114,27 @@
     return cell;
 }
 
-
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [self.detailViewController updateViewWithObject:self.articles[indexPath.row]];
+}
+-(void)nextRoom{
+    NSLog(@"%@",self.tableView.indexPathForSelectedRow);
+    NSInteger newLast = [self.tableView.indexPathForSelectedRow indexAtPosition:self.tableView.indexPathForSelectedRow.length-1]+1% self.articles.count;
+   NSIndexPath* indexPath = [[self.tableView.indexPathForSelectedRow indexPathByRemovingLastIndex] indexPathByAddingIndex:newLast];
+    NSLog(@"%@",indexPath);
+    [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:indexPath];
+    [self tableView:self.tableView didSelectRowAtIndexPath:indexPath];
+    
+}
+-(void)prevRoom{
+    NSLog(@"%@",self.tableView.indexPathForSelectedRow);
+    NSInteger newLast = [self.tableView.indexPathForSelectedRow indexAtPosition:self.tableView.indexPathForSelectedRow.length-1]-1 % self.articles.count;
+    NSIndexPath* indexPath = [[self.tableView.indexPathForSelectedRow indexPathByRemovingLastIndex] indexPathByAddingIndex:newLast];
+    NSLog(@"%@",indexPath);
+    [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:indexPath];
+    [self tableView:self.tableView didSelectRowAtIndexPath:indexPath];
+    
+}
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath

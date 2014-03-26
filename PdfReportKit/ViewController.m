@@ -38,24 +38,6 @@
     NSData *data = [filemanager contentsAtPath:path];
     */
     
-    
-    for(int count=0;count<10;count++)
-    {
-        Classroom *c1 = [[Classroom alloc] init];
-        c1.building = @"WPH";
-        c1.roomNo = [c1.building stringByAppendingString:[NSString stringWithFormat:@"%d",count]];
-        c1.SC = 10;
-        c1.ST = 10;
-        c1.IC = 10;
-        c1.IT = 10;
-        c1.isIC = TRUE;
-        c1.isIT = TRUE;
-        c1.isSC = TRUE;
-        c1.isST = TRUE;
-        c1.endTime = @"6:30 PM";
-        [articles addObject:c1];
-            }
-    
        defaultValues = @{
         @"articles"  : articles,
         @"date"      : @"03/30/2014",

@@ -10,6 +10,7 @@
 		18F5E9EE18E22E2800339B3C /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F5E9ED18E22E2800339B3C /* LoginViewController.m */; };
 		18F5E9F118E2317900339B3C /* myTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F5E9F018E2317900339B3C /* myTableViewController.m */; };
 		18F5E9F318E2350100339B3C /* class_list.csv in Resources */ = {isa = PBXBuildFile; fileRef = 18F5E9F218E2350100339B3C /* class_list.csv */; };
+		18F5EA3D18E2463500339B3C /* myDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F5EA3C18E2463500339B3C /* myDetailViewController.m */; };
 		53F9A22118D65D9500578940 /* ClosingReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F9A22018D65D9500578940 /* ClosingReport.m */; };
 		53F9A22518D66AC800578940 /* template2.mustache in Resources */ = {isa = PBXBuildFile; fileRef = 53F9A22418D66AC800578940 /* template2.mustache */; };
 		53F9A22718D66CB700578940 /* Classroom.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F9A22318D65F0F00578940 /* Classroom.m */; };
@@ -41,6 +42,8 @@
 		18F5E9EF18E2317900339B3C /* myTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myTableViewController.h; sourceTree = "<group>"; };
 		18F5E9F018E2317900339B3C /* myTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myTableViewController.m; sourceTree = "<group>"; };
 		18F5E9F218E2350100339B3C /* class_list.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = class_list.csv; sourceTree = "<group>"; };
+		18F5EA3B18E2463500339B3C /* myDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myDetailViewController.h; sourceTree = "<group>"; };
+		18F5EA3C18E2463500339B3C /* myDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myDetailViewController.m; sourceTree = "<group>"; };
 		53F9A21F18D65D9500578940 /* ClosingReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClosingReport.h; sourceTree = "<group>"; };
 		53F9A22018D65D9500578940 /* ClosingReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClosingReport.m; sourceTree = "<group>"; };
 		53F9A22218D65F0F00578940 /* Classroom.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Classroom.h; sourceTree = "<group>"; };
@@ -140,6 +143,8 @@
 				A9250A2C165D0DCB007EEDA2 /* AppDelegate.m */,
 				A9250A34165D0DCC007EEDA2 /* MainStoryboard_iPhone.storyboard */,
 				A9250A37165D0DCC007EEDA2 /* MainStoryboard_iPad.storyboard */,
+				18F5EA3B18E2463500339B3C /* myDetailViewController.h */,
+				18F5EA3C18E2463500339B3C /* myDetailViewController.m */,
 				18F5E9EF18E2317900339B3C /* myTableViewController.h */,
 				18F5E9F018E2317900339B3C /* myTableViewController.m */,
 				18F5E9EC18E22E2800339B3C /* LoginViewController.h */,
@@ -271,6 +276,7 @@
 				53F9A22718D66CB700578940 /* Classroom.m in Sources */,
 				A90C60F0165F720D006337D9 /* InvoiceItem.m in Sources */,
 				A9250A29165D0DCB007EEDA2 /* main.m in Sources */,
+				18F5EA3D18E2463500339B3C /* myDetailViewController.m in Sources */,
 				A9250A2D165D0DCB007EEDA2 /* AppDelegate.m in Sources */,
 				A9250A3C165D0DCC007EEDA2 /* ViewController.m in Sources */,
 				18F5E9F118E2317900339B3C /* myTableViewController.m in Sources */,

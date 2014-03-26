@@ -28,8 +28,7 @@
         myTableViewController *con = [[myTableViewController alloc] init];
         [self.navigationController pushViewController:con animated:YES];
     }
-    NSLog(@"%d %d",[self.login1.text isEqualToString:@"1" ] && [self.login2.text isEqualToString:@"2" ] && [self.login3.text isEqualToString:@"3" ]&& [self.login4.text isEqualToString:@"4"],[self.login4.text isEqualToString:@"4"]);
-}
+ }
 
 
 - (void)viewDidLoad

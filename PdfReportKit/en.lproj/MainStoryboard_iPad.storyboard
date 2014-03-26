@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="Zyc-cC-ILv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="Zyc-cC-ILv">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -150,10 +150,10 @@
             </objects>
             <point key="canvasLocation" x="-810" y="147"/>
         </scene>
-        <!--View Controller-->
+        <!--My Detail View Controller-->
         <scene sceneID="OeM-tG-w4a">
             <objects>
-                <viewController id="9NT-UJ-xZ3" sceneMemberID="viewController">
+                <viewController id="9NT-UJ-xZ3" customClass="myDetailViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="KsR-E1-eS2">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -238,6 +238,9 @@
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="sO0-A0-5Db">
                                 <rect key="frame" x="360" y="643" width="51" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="allChanged:" destination="9NT-UJ-xZ3" eventType="valueChanged" id="X34-9g-aBs"/>
+                                </connections>
                             </switch>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Everthing is correct" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gYD-kL-coF">
                                 <rect key="frame" x="194" y="648" width="149" height="21"/>
@@ -247,9 +250,37 @@
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="2hq-oV-y5F" appends="YES" id="wKq-m2-sUm"/>
+                            <outletCollection property="gestureRecognizers" destination="t3O-p7-3ED" appends="YES" id="gAI-n5-dpw"/>
+                        </connections>
                     </view>
+                    <connections>
+                        <outlet property="buildingName" destination="kt9-ui-Zl2" id="1xs-Zd-pj6"/>
+                        <outlet property="className" destination="hjW-GO-3zz" id="bLs-iv-cSw"/>
+                        <outlet property="ic_count" destination="xDZ-p4-0gk" id="8hM-ti-jEE"/>
+                        <outlet property="is_all" destination="sO0-A0-5Db" id="ddb-De-hPj"/>
+                        <outlet property="is_ic" destination="Now-82-8yE" id="fxE-U1-NVX"/>
+                        <outlet property="is_it" destination="bp9-Za-S4C" id="r7i-LP-KKc"/>
+                        <outlet property="is_sc" destination="NGH-ga-nU3" id="JVP-wY-WBY"/>
+                        <outlet property="is_st" destination="r4q-hu-KoV" id="bwu-CJ-YbI"/>
+                        <outlet property="it_count" destination="Dir-WY-SgZ" id="4bY-Im-aPo"/>
+                        <outlet property="sc_count" destination="AuT-of-gUT" id="smJ-sB-tLU"/>
+                        <outlet property="st_count" destination="1ac-FT-zgR" id="dzP-gY-rUN"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xjz-6c-tJF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="right" id="2hq-oV-y5F">
+                    <connections>
+                        <action selector="swipeRight:" destination="9NT-UJ-xZ3" id="1Fh-zc-Aed"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="left" id="t3O-p7-3ED">
+                    <connections>
+                        <action selector="swipeLeft:" destination="9NT-UJ-xZ3" id="O3a-UE-Vwc"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="399" y="775"/>
         </scene>

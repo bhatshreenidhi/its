@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "myDetailViewController.h"
 
-@interface myTableViewController : UITableViewController
-
+@interface myTableViewController : UITableViewController<UITableViewDataSource,UITableViewDelegate>
+@property (strong, nonatomic) myDetailViewController *detailViewController;
+-(void)nextRoom;
 @end
