@@ -23,7 +23,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    NSMutableArray * articles = [NSMutableArray array];
+   // NSMutableArray * articles = [NSMutableArray array];
     /*NSFileManager *filemanager = [[NSFileManager alloc] init];
     NSString *path= @"/Users/shreenidhibhat/projGithub/PdfReportKit/1.csv";
     
@@ -39,14 +39,14 @@
     */
     
        defaultValues = @{
-        @"articles"  : articles,
+        @"articles"  : self.articles,
         @"date"      : @"03/30/2014",
         @"completedBy": @"Nikhil M M",
         };
     
     NSError * error;    
     NSString * templatePath = [[NSBundle mainBundle] pathForResource:@"template2" ofType:@"mustache"];
-    [[PRKGenerator sharedGenerator] createReportWithName:@"template2" templateURLString:templatePath itemsPerPage:100 totalItems:articles.count pageOrientation:PRKLandscapePage dataSource:self delegate:self error:&error];
+    [[PRKGenerator sharedGenerator] createReportWithName:@"template2" templateURLString:templatePath itemsPerPage:100 totalItems:self.articles.count pageOrientation:PRKLandscapePage dataSource:self delegate:self error:&error];
 }
 
 - (void)didReceiveMemoryWarning

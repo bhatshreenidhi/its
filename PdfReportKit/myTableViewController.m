@@ -8,6 +8,7 @@
 
 #import "myTableViewController.h"
 #import "Classroom.h"
+#import "ViewController.h"
 @interface myTableViewController ()
 @property (nonatomic,strong) NSMutableArray *articles;
 
@@ -79,6 +80,7 @@
                                                  name:@"prevRequest"
                                                object:nil];
 }
+
 -(void)viewDidUnload{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
@@ -135,6 +137,11 @@
     [self tableView:self.tableView didSelectRowAtIndexPath:indexPath];
     
 }
+
+-(void) generateReport{
+    
+}
+
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
