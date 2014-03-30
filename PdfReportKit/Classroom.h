@@ -22,5 +22,9 @@
 @property (nonatomic,strong) NSString * endTime;
 @property (nonatomic,strong) NSString * remarks;
 @property (nonatomic,strong) NSString * building;
+@property (nonatomic,strong) NSString * isScCorrect;
+@property (nonatomic,strong) NSString * isStCorrect;
+@property (nonatomic,strong) NSString * isItCorrect;
+@property (nonatomic,strong) NSString * isIcCorrect;
 
 @end

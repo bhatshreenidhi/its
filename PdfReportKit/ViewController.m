@@ -23,30 +23,65 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-   // NSMutableArray * articles = [NSMutableArray array];
-    /*NSFileManager *filemanager = [[NSFileManager alloc] init];
-    NSString *path= @"/Users/shreenidhibhat/projGithub/PdfReportKit/1.csv";
+    NSMutableArray * articles = [NSMutableArray array];
     
-    if([filemanager fileExistsAtPath:path]){
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"class_list" ofType:@"csv"];
+    NSString *testString = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
+    
+    
+    NSArray *data = [testString componentsSeparatedByString:@"\n"];
+    
+    
+    
+    //articles = [NSMutableArray array];
+    
+    for(int count=0;count<[data count];count++)
+    {
+        NSArray *info = [[data objectAtIndex:count] componentsSeparatedByString:@","];
+        NSArray *roomInfo = [[info objectAtIndex:0] componentsSeparatedByString:@" "];
+        NSArray *countArray = [[info objectAtIndex:1] componentsSeparatedByString:@"/"];
         
-        NSLog(@"File exists");
+        
+        Classroom *c1 = [[Classroom alloc] init];
+        c1.building = [roomInfo objectAtIndex:0];
+        c1.roomNo = [roomInfo objectAtIndex:1];
+        if([countArray count]==4)
+        {
+            c1.sc_count = [countArray objectAtIndex:0];
+            c1.st_count = [countArray objectAtIndex:1];
+            c1.ic_count = [countArray objectAtIndex:2];
+            c1.it_count = [[countArray objectAtIndex:3]stringByReplacingOccurrencesOfString:@"\r" withString:@""];
+            c1.isIcCorrect = @"\u2713";
+            c1.isItCorrect = @"\u2713";
+            c1.isScCorrect = @"\u2713";
+            c1.isStCorrect = @"\u2713";
+            
+        }
+        else
+        {
+            
+        }
+        c1.isIC = TRUE;
+        c1.isIT = TRUE;
+        c1.isSC = TRUE;
+        c1.isST = TRUE;
+        //[string stringByAppendingFormat:@"%C", 0x2665];
+        
+        
+        c1.endTime = @"6:30 PM";
+        [articles addObject:c1];
     }
-    else{
-        NSLog(@"Does not exists");
-    }
-    
-    NSData *data = [filemanager contentsAtPath:path];
-    */
+
     
        defaultValues = @{
-        @"articles"  : self.articles,
-        @"date"      : @"03/30/2014",
+        @"articles"  : articles,
+        @"date"      : @"03/26/2014",
         @"completedBy": @"Nikhil M M",
         };
     
     NSError * error;    
     NSString * templatePath = [[NSBundle mainBundle] pathForResource:@"template2" ofType:@"mustache"];
-    [[PRKGenerator sharedGenerator] createReportWithName:@"template2" templateURLString:templatePath itemsPerPage:100 totalItems:self.articles.count pageOrientation:PRKLandscapePage dataSource:self delegate:self error:&error];
+    [[PRKGenerator sharedGenerator] createReportWithName:@"template2" templateURLString:templatePath itemsPerPage:100 totalItems: articles.count pageOrientation:PRKLandscapePage dataSource:self delegate:self error:&error];
 }
 
 - (void)didReceiveMemoryWarning
