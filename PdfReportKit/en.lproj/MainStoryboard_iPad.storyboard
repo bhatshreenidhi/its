@@ -107,6 +107,21 @@
             <point key="canvasLocation" x="884" y="-429"/>
         </scene>
         <!--Navigation Controller-->
+        <scene sceneID="wDM-ZH-AcI">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="0ci-rE-qAQ" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="EUq-4Z-RRl">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="9NT-UJ-xZ3" kind="relationship" relationship="rootViewController" id="1LL-dg-PnW"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="byD-Oz-Jrg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="190" y="767"/>
+        </scene>
+        <!--Navigation Controller-->
         <scene sceneID="Uhy-y3-dSt">
             <objects>
                 <navigationController id="MRC-Vw-Fx7" sceneMemberID="viewController">
@@ -129,7 +144,7 @@
                     <navigationItem key="navigationItem" id="Vhx-6C-Gy4"/>
                     <connections>
                         <segue destination="MRC-Vw-Fx7" kind="relationship" relationship="masterViewController" id="u3c-bJ-kSZ"/>
-                        <segue destination="9NT-UJ-xZ3" kind="relationship" relationship="detailViewController" id="4Ev-xT-e0Y"/>
+                        <segue destination="0ci-rE-qAQ" kind="relationship" relationship="detailViewController" id="gda-5Q-wib"/>
                     </connections>
                 </splitViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="evG-sT-Ce2" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -243,6 +258,13 @@
                         </connections>
                     </view>
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="BZM-AN-hA3">
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="gPb-fs-TBT">
+                            <connections>
+                                <segue destination="2" kind="push" id="0CL-dc-Bbr"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="buildingName" destination="kt9-ui-Zl2" id="1xs-Zd-pj6"/>
@@ -270,7 +292,7 @@
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="399" y="775"/>
+            <point key="canvasLocation" x="1095" y="767"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="4">
@@ -284,20 +306,28 @@
                                 <rect key="frame" x="374" y="502" width="20" height="20"/>
                             </activityIndicatorView>
                             <webView contentMode="scaleToFill" id="hyq-CD-O6O">
-                                <rect key="frame" x="0.0" y="0.0" width="768" height="1004"/>
+                                <rect key="frame" x="0.0" y="65" width="768" height="959"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="8Xd-OI-kF4">
+                        <barButtonItem key="leftBarButtonItem" title="Item" systemItem="compose" id="pVX-jQ-isI"/>
+                        <barButtonItem key="rightBarButtonItem" title="Done" id="aoC-d5-1MD">
+                            <connections>
+                                <action selector="done:" destination="2" id="rPc-Lt-Obm"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="webView" destination="hyq-CD-O6O" id="lD1-eQ-smQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="936" y="136"/>
+            <point key="canvasLocation" x="2104" y="767"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

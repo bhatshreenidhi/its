@@ -13,7 +13,7 @@
 #import "Classroom.h"
 
 @interface ViewController ()
-
+@property BOOL IShide;
 @end
 
 @implementation ViewController
@@ -71,17 +71,39 @@
         c1.endTime = @"6:30 PM";
         [articles addObject:c1];
     }
-
     
-       defaultValues = @{
-        @"articles"  : articles,
-        @"date"      : @"03/26/2014",
-        @"completedBy": @"Nikhil M M",
-        };
     
-    NSError * error;    
+    defaultValues = @{
+                      @"articles"  : articles,
+                      @"date"      : @"03/26/2014",
+                      @"completedBy": @"Nikhil M M",
+                      };
+    
+    NSError * error;
     NSString * templatePath = [[NSBundle mainBundle] pathForResource:@"template2" ofType:@"mustache"];
     [[PRKGenerator sharedGenerator] createReportWithName:@"template2" templateURLString:templatePath itemsPerPage:100 totalItems: articles.count pageOrientation:PRKLandscapePage dataSource:self delegate:self error:&error];
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    [self hideMaster:self];
+    [super viewDidAppear:animated];
+}
+-(BOOL)splitViewController:(UISplitViewController *)svc shouldHideViewController:(UIViewController *)vc inOrientation:(UIInterfaceOrientation)orientation
+{
+    return self.IShide;
+}
+
+-(void)hideMaster:(id)hideState
+{
+    
+    _IShide=!self.IShide;
+    [self.splitViewController.view setNeedsLayout];
+    self.splitViewController.delegate = nil;
+    self.splitViewController.delegate = self;
+    
+    [self.splitViewController willRotateToInterfaceOrientation:[UIApplication    sharedApplication].statusBarOrientation duration:0];
+    
+    //also put your `MPMoviePlayerController` Fullscreen Method here
 }
 
 - (void)didReceiveMemoryWarning
@@ -105,6 +127,12 @@
     
     return [defaultValues valueForKey:tagName];
 }
+- (IBAction)done:(id)sender {
+    [self hideMaster:self];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+
 
 - (void)reportsGenerator:(PRKGenerator *)generator didFinishRenderingWithData:(NSData *)data
 {
@@ -112,7 +140,7 @@
     NSString * fileName = [basePath stringByAppendingPathComponent:@"report.pdf"];
     
     [data writeToFile:fileName atomically:YES];
-
+    
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL fileURLWithPath:fileName]];
     [self.webView loadRequest:request];
 }

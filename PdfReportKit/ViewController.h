@@ -10,7 +10,7 @@
 #import "PRKGeneratorDataSource.h"
 #import "PRKGeneratorDelegate.h"
 
-@interface ViewController : UIViewController<PRKGeneratorDataSource, PRKGeneratorDelegate>
+@interface ViewController : UIViewController<PRKGeneratorDataSource, PRKGeneratorDelegate,UISplitViewControllerDelegate>
 {
     NSDictionary * defaultValues;
 }

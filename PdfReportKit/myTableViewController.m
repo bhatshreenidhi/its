@@ -31,7 +31,7 @@
     
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"class_list" ofType:@"csv"];
     NSString *testString = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
-    
+    self.splitViewController.delegate=self;
     
     NSArray *data = [testString componentsSeparatedByString:@"\n"];
     
@@ -65,7 +65,8 @@
         [self.articles addObject:c1];
     }
     [self.tableView reloadData];
-    self.detailViewController = (myDetailViewController *)[self.splitViewController.viewControllers lastObject];
+    self.detailViewController = (myDetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
+    NSLog(@"%@",self.detailViewController);
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -84,6 +85,20 @@
     //    [self tableView:self.tableView didSelectRowAtIndexPath:index];
 }
 
+-(BOOL)splitViewController:(UISplitViewController *)svc shouldHideViewController:(UIViewController *)vc inOrientation:(UIInterfaceOrientation)orientation
+{
+    if (orientation==UIDeviceOrientationPortrait) {
+        return YES;
+    }
+    return NO;
+}
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+        self.splitViewController.delegate=self;
+}
+-(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation{
+//        [self.splitViewController.view setNeedsLayout];
+}
 -(void)viewDidUnload{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
