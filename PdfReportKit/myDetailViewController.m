@@ -39,13 +39,29 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 - (IBAction)swipeLeft:(id)sender {
-    NSNotification *notif = [NSNotification notificationWithName:@"nextRequest" object:self];
-    [[NSNotificationCenter defaultCenter] postNotification:notif];
+
+    
+    [UIView transitionWithView:self.view
+                      duration:0.5
+                       options:UIViewAnimationOptionTransitionFlipFromRight
+                    animations:^{
+                        NSNotification *notif = [NSNotification notificationWithName:@"nextRequest" object:self];
+                        [[NSNotificationCenter defaultCenter] postNotification:notif];
+                    }
+                    completion:NULL];
 //    [self .splitViewController.viewControllers]
 }
 - (IBAction)swipeRight:(id)sender {
-    NSNotification *notif = [NSNotification notificationWithName:@"prevRequest" object:self];
-    [[NSNotificationCenter defaultCenter] postNotification:notif];
+    [UIView transitionWithView:self.view
+                      duration:0.5
+                       options:UIViewAnimationOptionTransitionFlipFromLeft
+                    animations:^{
+                        NSNotification *notif = [NSNotification notificationWithName:@"prevRequest" object:self];
+                        [[NSNotificationCenter defaultCenter] postNotification:notif];
+                    }
+                    completion:NULL];
+//    NSNotification *notif = [NSNotification notificationWithName:@"prevRequest" object:self];
+//    [[NSNotificationCenter defaultCenter] postNotification:notif];
     //    [self .splitViewController.viewControllers]
 }
 - (IBAction)allChanged:(UISwitch*)sender {
@@ -75,13 +91,16 @@
 }
 */
 - (void) updateViewWithObject:(Classroom *) classRoom{
-  
+
+    
     self.buildingName.text = classRoom.building;
     self.className.text=classRoom.roomNo;
     self.sc_count.text= classRoom.sc_count;
     self.ic_count.text=classRoom.ic_count;
     self.it_count.text=classRoom.it_count;
     self.st_count.text=classRoom.st_count;
+
+
 }
 
 @end

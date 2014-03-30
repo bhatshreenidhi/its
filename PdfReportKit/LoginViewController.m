@@ -24,11 +24,7 @@
 }
 - (IBAction)loginPressed:(id)sender {
 
-    if ([self.login1.text isEqualToString:@"1" ] && [self.login2.text isEqualToString:@"2" ] && [self.login3.text isEqualToString:@"3" ]&& [self.login4.text isEqualToString:@"4"]) {
-        myTableViewController *con = [[myTableViewController alloc] init];
-        [self.navigationController pushViewController:con animated:YES];
-    }
- }
+}
 
 
 - (void)viewDidLoad
@@ -44,6 +40,13 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
+     if ([self.login1.text isEqualToString:@"1" ] && [self.login2.text isEqualToString:@"2" ] && [self.login3.text isEqualToString:@"3" ]&& [self.login4.text isEqualToString:@"4"]) {
+         return YES;
+     }
+    else
+        return NO;
+}
 /*
 #pragma mark - Navigation
 
