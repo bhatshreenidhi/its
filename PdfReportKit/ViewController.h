@@ -9,8 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "PRKGeneratorDataSource.h"
 #import "PRKGeneratorDelegate.h"
+#import <UIKit/UIKit.h>
+#import <MessageUI/MessageUI.h>
 
-@interface ViewController : UIViewController<PRKGeneratorDataSource, PRKGeneratorDelegate,UISplitViewControllerDelegate>
+@interface ViewController : UIViewController<PRKGeneratorDataSource, PRKGeneratorDelegate,UISplitViewControllerDelegate,MFMailComposeViewControllerDelegate>
 {
     NSDictionary * defaultValues;
 }

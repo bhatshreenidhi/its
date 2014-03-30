@@ -14,6 +14,8 @@
 
 @interface ViewController ()
 @property BOOL IShide;
+@property (nonatomic, weak) IBOutlet UILabel *feedbackMsg;
+@property (nonatomic,retain) NSString * fileName;
 @end
 
 @implementation ViewController
@@ -83,6 +85,20 @@
     NSString * templatePath = [[NSBundle mainBundle] pathForResource:@"template2" ofType:@"mustache"];
     [[PRKGenerator sharedGenerator] createReportWithName:@"template2" templateURLString:templatePath itemsPerPage:100 totalItems: articles.count pageOrientation:PRKLandscapePage dataSource:self delegate:self error:&error];
 }
+- (IBAction)composeMail:(id)sender {
+    MFMailComposeViewController *vc = [[MFMailComposeViewController alloc] init];
+    [vc setSubject:@"Report"];
+    vc.mailComposeDelegate=self;
+    NSData *myData = [NSData dataWithContentsOfFile:self.fileName];
+    [vc addAttachmentData:myData mimeType:@"application/pdf" fileName:@"Report.pdf"];
+    [self presentViewController:vc animated:YES completion:NULL];
+    //  [self.navigationController pushViewController:vc animated:YES];
+    //   [vc addAttachmentData:pdfData mimeType:@"application/pdf" fileName:@"SomeFile.pdf"];
+    //    MFMailComposeViewController *mailVC = [[MFMailComposeViewController alloc] init];
+    //    [self.navigationController presentViewController:mailVC animated:YES completion:^{
+    //        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    //    }];
+}
 
 -(void)viewDidAppear:(BOOL)animated{
     [self hideMaster:self];
@@ -140,9 +156,42 @@
     NSString * fileName = [basePath stringByAppendingPathComponent:@"report.pdf"];
     
     [data writeToFile:fileName atomically:YES];
-    
+    self.fileName=fileName;
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL fileURLWithPath:fileName]];
     [self.webView loadRequest:request];
+}
+
+
+- (void)mailComposeController:(MFMailComposeViewController*)controller
+          didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error
+{
+    self.feedbackMsg.hidden = NO;
+    NSLog(@"mailComposeController !!");
+    // Notifies users about errors associated with the interface
+    switch (result)
+    {
+        case MFMailComposeResultCancelled:
+            self.feedbackMsg.text = @"Result: Mail sending canceled";
+            break;
+        case MFMailComposeResultSaved:
+            self.feedbackMsg.text = @"Result: Mail saved";
+            break;
+        case MFMailComposeResultSent:
+            self.feedbackMsg.text = @"Result: Mail sent";
+            break;
+        case MFMailComposeResultFailed:
+            self.feedbackMsg.text = @"Result: Mail sending failed";
+            break;
+        default:
+            self.feedbackMsg.text = @"Result: Mail not sent";
+            break;
+    }
+    
+    [self dismissViewControllerAnimated:YES completion:^{
+        [UIView animateWithDuration:2.0
+                         animations:^{self.feedbackMsg.hidden=YES;}
+                         completion:^(BOOL finished){ self.feedbackMsg.hidden=YES; }];
+    }];
 }
 
 @end

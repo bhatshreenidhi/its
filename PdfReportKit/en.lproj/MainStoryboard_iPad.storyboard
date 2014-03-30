@@ -310,11 +310,22 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </webView>
+                            <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Feedback" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3VJ-B9-mnL">
+                                <rect key="frame" x="342" y="240" width="160" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="8Xd-OI-kF4">
-                        <barButtonItem key="leftBarButtonItem" title="Item" systemItem="compose" id="pVX-jQ-isI"/>
+                        <barButtonItem key="leftBarButtonItem" title="Item" systemItem="compose" id="pVX-jQ-isI">
+                            <connections>
+                                <action selector="composeMail:" destination="2" id="B3w-II-ZbA"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Done" id="aoC-d5-1MD">
                             <connections>
                                 <action selector="done:" destination="2" id="rPc-Lt-Obm"/>
@@ -322,6 +333,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="feedbackMsg" destination="3VJ-B9-mnL" id="AxV-rk-dMk"/>
                         <outlet property="webView" destination="hyq-CD-O6O" id="lD1-eQ-smQ"/>
                     </connections>
                 </viewController>

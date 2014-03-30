@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		18947E3E18E7E42700F7C397 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18947E3D18E7E42700F7C397 /* MessageUI.framework */; };
 		18F5E9EE18E22E2800339B3C /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F5E9ED18E22E2800339B3C /* LoginViewController.m */; };
 		18F5E9F118E2317900339B3C /* myTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F5E9F018E2317900339B3C /* myTableViewController.m */; };
 		18F5E9F318E2350100339B3C /* class_list.csv in Resources */ = {isa = PBXBuildFile; fileRef = 18F5E9F218E2350100339B3C /* class_list.csv */; };
@@ -38,6 +39,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		18947E3D18E7E42700F7C397 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		18F5E9EC18E22E2800339B3C /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		18F5E9ED18E22E2800339B3C /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		18F5E9EF18E2317900339B3C /* myTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myTableViewController.h; sourceTree = "<group>"; };
@@ -93,6 +95,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18947E3E18E7E42700F7C397 /* MessageUI.framework in Frameworks */,
 				A9250A1D165D0DCB007EEDA2 /* UIKit.framework in Frameworks */,
 				A9250A1F165D0DCB007EEDA2 /* Foundation.framework in Frameworks */,
 				A9250A21165D0DCB007EEDA2 /* CoreGraphics.framework in Frameworks */,
@@ -124,6 +127,7 @@
 		A9250A1B165D0DCB007EEDA2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				18947E3D18E7E42700F7C397 /* MessageUI.framework */,
 				A9250A49165D1384007EEDA2 /* libGRMustache6-iOS.a */,
 				A9250A1C165D0DCB007EEDA2 /* UIKit.framework */,
 				A9250A1E165D0DCB007EEDA2 /* Foundation.framework */,
