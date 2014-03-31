@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Classroom : NSObject
+@interface Classroom : NSObject<NSCoding>
 
 @property (nonatomic,strong) NSString * roomNo;
 @property (nonatomic,strong) NSString * sc_count;

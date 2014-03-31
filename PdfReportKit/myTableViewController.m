@@ -9,6 +9,8 @@
 #import "myTableViewController.h"
 #import "Classroom.h"
 #import "ViewController.h"
+#import "AppDelegate.h"
+
 @interface myTableViewController ()
 @property (nonatomic,strong) NSMutableArray *articles;
 
@@ -38,6 +40,8 @@
     
     
     self.articles = [NSMutableArray array];
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    appDelegate.articleArray = self.articles;
     
     for(int count=0;count<[data count];count++)
     {
