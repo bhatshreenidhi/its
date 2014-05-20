@@ -9,7 +9,7 @@
 #import "myDetailViewController.h"
 
 @interface myDetailViewController ()
-
+@property (nonatomic) Classroom *classRoom;
 @end
 
 @implementation myDetailViewController
@@ -33,13 +33,12 @@
                                              selector:@selector(forceReload)
                                                  name:@"reloadRequest"
                                                object:nil];
-    // Do any additional setup after loading the view.
 }
 -(void)viewDidUnload{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 - (IBAction)swipeLeft:(id)sender {
-
+    
     
     [UIView transitionWithView:self.view
                       duration:0.5
@@ -49,7 +48,7 @@
                         [[NSNotificationCenter defaultCenter] postNotification:notif];
                     }
                     completion:NULL];
-//    [self .splitViewController.viewControllers]
+    //    [self .splitViewController.viewControllers]
 }
 - (IBAction)swipeRight:(id)sender {
     [UIView transitionWithView:self.view
@@ -60,15 +59,29 @@
                         [[NSNotificationCenter defaultCenter] postNotification:notif];
                     }
                     completion:NULL];
-//    NSNotification *notif = [NSNotification notificationWithName:@"prevRequest" object:self];
-//    [[NSNotificationCenter defaultCenter] postNotification:notif];
+    //    NSNotification *notif = [NSNotification notificationWithName:@"prevRequest" object:self];
+    //    [[NSNotificationCenter defaultCenter] postNotification:notif];
     //    [self .splitViewController.viewControllers]
 }
 - (IBAction)allChanged:(UISwitch*)sender {
-    [self.is_st setOn:sender.on animated:YES];
-    [self.is_sc setOn:sender.on animated:YES];
-    [self.is_it setOn:sender.on animated:YES];
-    [self.is_ic setOn:sender.on animated:YES];    
+    if (sender==self.is_all) {
+        [self.is_st setOn:sender.on animated:YES];
+        [self.is_sc setOn:sender.on animated:YES];
+        [self.is_it setOn:sender.on animated:YES];
+        [self.is_ic setOn:sender.on animated:YES];
+    }
+    if (sender==self.is_ic) {
+        self.classRoom.isIC=self.is_ic;
+    }
+    if (sender==self.is_it) {
+        self.classRoom.isIT=self.is_it;
+    }
+    if (sender==self.is_sc) {
+        self.classRoom.isSC=self.is_sc;
+    }
+    if (sender==self.is_st) {
+        self.classRoom.isST=self.is_st;
+    }
 }
 
 -(void)allChanged{
@@ -81,26 +94,27 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+ {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 - (void) updateViewWithObject:(Classroom *) classRoom{
-
-    
+    self.classRoom=classRoom;
     self.buildingName.text = classRoom.building;
     self.className.text=classRoom.roomNo;
     self.sc_count.text= classRoom.sc_count;
     self.ic_count.text=classRoom.ic_count;
     self.it_count.text=classRoom.it_count;
     self.st_count.text=classRoom.st_count;
-
-
+    self.is_ic.on=classRoom.isIC;
+    self.is_it.on=classRoom.isIT;
+    self.is_sc.on=classRoom.isSC;
+    self.is_st.on=classRoom.isST;
 }
 
 @end

@@ -84,9 +84,12 @@
                                              selector:@selector(prevRoom)
                                                  name:@"prevRequest"
                                                object:nil];
-    //    NSIndexPath *index=[NSIndexPath indexPathForItem:0 inSection:0] ;
-    //    [self.tableView selectRowAtIndexPath:index animated:YES scrollPosition:index];
-    //    [self tableView:self.tableView didSelectRowAtIndexPath:index];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSIndexPath *index=[NSIndexPath indexPathForItem:0 inSection:0] ;
+        [self.tableView selectRowAtIndexPath:index animated:YES scrollPosition:index];
+        [self.tableView selectRowAtIndexPath:index animated:YES scrollPosition:UITableViewScrollPositionBottom];
+        [self tableView:self.tableView didSelectRowAtIndexPath:index];
+    });
 }
 
 -(BOOL)splitViewController:(UISplitViewController *)svc shouldHideViewController:(UIViewController *)vc inOrientation:(UIInterfaceOrientation)orientation
@@ -98,10 +101,10 @@
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-        self.splitViewController.delegate=self;
+    self.splitViewController.delegate=self;
 }
 -(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation{
-//        [self.splitViewController.view setNeedsLayout];
+    //        [self.splitViewController.view setNeedsLayout];
 }
 -(void)viewDidUnload{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -140,14 +143,17 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [self.detailViewController updateViewWithObject:self.articles[indexPath.row]];
+    if (indexPath.row==0) {
+      
+    }
 }
 -(void)nextRoom{
     NSIndexPath *oldIndex = self.tableView.indexPathForSelectedRow;
     NSIndexPath *newIndex;
     if(oldIndex.row+1>=self.articles.count)
-        newIndex = [NSIndexPath  indexPathForRow:0 inSection:oldIndex.section];
+    newIndex = [NSIndexPath  indexPathForRow:0 inSection:oldIndex.section];
     else
-        newIndex = [NSIndexPath  indexPathForRow:(oldIndex.row+1%self.articles.count) inSection:oldIndex.section];
+    newIndex = [NSIndexPath  indexPathForRow:(oldIndex.row+1%self.articles.count) inSection:oldIndex.section];
     [self.tableView selectRowAtIndexPath:newIndex animated:YES scrollPosition:newIndex];
     [self tableView:self.tableView didSelectRowAtIndexPath:newIndex];
     [self.tableView scrollToNearestSelectedRowAtScrollPosition:newIndex animated:YES];
