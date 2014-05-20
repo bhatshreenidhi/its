@@ -166,7 +166,6 @@
           didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error
 {
     self.feedbackMsg.hidden = NO;
-    NSLog(@"mailComposeController !!");
     // Notifies users about errors associated with the interface
     switch (result)
     {

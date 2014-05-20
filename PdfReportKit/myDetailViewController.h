@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 @class  myTableViewController;
 #import "Classroom.h"
-@interface myDetailViewController : UIViewController <UISplitViewControllerDelegate>
+@interface myDetailViewController : UIViewController <UISplitViewControllerDelegate,UITextViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *buildingName;
 - (void) updateViewWithObject:(Classroom *) classRoom;
 @property (weak, nonatomic) IBOutlet UILabel *className;
