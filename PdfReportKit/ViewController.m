@@ -24,66 +24,22 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    
-    NSMutableArray * articles = [NSMutableArray array];
-    
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"class_list" ofType:@"csv"];
-    NSString *testString = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
-    
-    
-    NSArray *data = [testString componentsSeparatedByString:@"\n"];
-    
-    
-    
-    //articles = [NSMutableArray array];
-    
-    for(int count=0;count<[data count];count++)
-    {
-        NSArray *info = [[data objectAtIndex:count] componentsSeparatedByString:@","];
-        NSArray *roomInfo = [[info objectAtIndex:0] componentsSeparatedByString:@" "];
-        NSArray *countArray = [[info objectAtIndex:1] componentsSeparatedByString:@"/"];
-        
-        
-        Classroom *c1 = [[Classroom alloc] init];
-        c1.building = [roomInfo objectAtIndex:0];
-        c1.roomNo = [roomInfo objectAtIndex:1];
-        if([countArray count]==4)
-        {
-            c1.sc_count = [countArray objectAtIndex:0];
-            c1.st_count = [countArray objectAtIndex:1];
-            c1.ic_count = [countArray objectAtIndex:2];
-            c1.it_count = [[countArray objectAtIndex:3]stringByReplacingOccurrencesOfString:@"\r" withString:@""];
-            c1.isIcCorrect = @"\u2713";
-            c1.isItCorrect = @"\u2713";
-            c1.isScCorrect = @"\u2713";
-            c1.isStCorrect = @"\u2713";
-            
-        }
-        else
-        {
-            
-        }
-        c1.isIC = TRUE;
-        c1.isIT = TRUE;
-        c1.isSC = TRUE;
-        c1.isST = TRUE;
-        //[string stringByAppendingFormat:@"%C", 0x2665];
-        
-        
-        c1.endTime = @"6:30 PM";
-        [articles addObject:c1];
-    }
-    
-    
     defaultValues = @{
-                      @"articles"  : articles,
+                      @"articles"  : self.rooms,
                       @"date"      : @"03/26/2014",
                       @"completedBy": @"Nikhil M M",
                       };
-    
     NSError * error;
+    for (int i=0; i<self.rooms.count; i++) {
+        Classroom *c=self.rooms[i];
+        c.isScCorrect=c.isSC ? @"\u2713" : @"\u2715";
+        c.isIcCorrect=c.isIC ? @"\u2713" : @"\u2715";
+        c.isItCorrect=c.isIT ? @"\u2713" : @"\u2715";
+        c.isStCorrect=c.isST ? @"\u2713" : @"\u2715";
+        c.problem = c.isSC&&c.isIC&&c.isIT&&c.isST ? @"":@"problem";
+    }
     NSString * templatePath = [[NSBundle mainBundle] pathForResource:@"template2" ofType:@"mustache"];
-    [[PRKGenerator sharedGenerator] createReportWithName:@"template2" templateURLString:templatePath itemsPerPage:100 totalItems: articles.count pageOrientation:PRKLandscapePage dataSource:self delegate:self error:&error];
+    [[PRKGenerator sharedGenerator] createReportWithName:@"template2" templateURLString:templatePath itemsPerPage:100 totalItems: self.rooms.count pageOrientation:PRKLandscapePage dataSource:self delegate:self error:&error];
 }
 - (IBAction)composeMail:(id)sender {
     MFMailComposeViewController *vc = [[MFMailComposeViewController alloc] init];
@@ -92,12 +48,6 @@
     NSData *myData = [NSData dataWithContentsOfFile:self.fileName];
     [vc addAttachmentData:myData mimeType:@"application/pdf" fileName:@"Report.pdf"];
     [self presentViewController:vc animated:YES completion:NULL];
-    //  [self.navigationController pushViewController:vc animated:YES];
-    //   [vc addAttachmentData:pdfData mimeType:@"application/pdf" fileName:@"SomeFile.pdf"];
-    //    MFMailComposeViewController *mailVC = [[MFMailComposeViewController alloc] init];
-    //    [self.navigationController presentViewController:mailVC animated:YES completion:^{
-    //        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-    //    }];
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -112,20 +62,16 @@
 -(void)hideMaster:(id)hideState
 {
     
-    _IShide=!self.IShide;
+    self.IShide=!self.IShide;
     [self.splitViewController.view setNeedsLayout];
     self.splitViewController.delegate = nil;
     self.splitViewController.delegate = self;
-    
     [self.splitViewController willRotateToInterfaceOrientation:[UIApplication    sharedApplication].statusBarOrientation duration:0];
-    
-    //also put your `MPMoviePlayerController` Fullscreen Method here
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (id)reportsGenerator:(PRKGenerator *)generator dataForReport:(NSString *)reportName withTag:(NSString *)tagName forPage:(NSUInteger)pageNumber offset:(NSUInteger)offset itemsCount:(NSUInteger)itemsCount
@@ -143,6 +89,7 @@
     
     return [defaultValues valueForKey:tagName];
 }
+
 - (IBAction)done:(id)sender {
     [self hideMaster:self];
     [self.navigationController popViewControllerAnimated:YES];

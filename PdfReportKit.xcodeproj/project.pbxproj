@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		18947E3E18E7E42700F7C397 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18947E3D18E7E42700F7C397 /* MessageUI.framework */; };
+		18B88D8F192EB5270084ADC2 /* zones.csv in Resources */ = {isa = PBXBuildFile; fileRef = 18B88D8E192EB5270084ADC2 /* zones.csv */; };
+		18B88D91192EB56C0084ADC2 /* zone1.csv in Resources */ = {isa = PBXBuildFile; fileRef = 18B88D90192EB56C0084ADC2 /* zone1.csv */; };
+		18B88D93192EB5730084ADC2 /* zone2.csv in Resources */ = {isa = PBXBuildFile; fileRef = 18B88D92192EB5730084ADC2 /* zone2.csv */; };
+		18B88D95192EB5840084ADC2 /* zone3 in Resources */ = {isa = PBXBuildFile; fileRef = 18B88D94192EB5840084ADC2 /* zone3 */; };
+		18B88D97192EB6730084ADC2 /* reportTypeSelection.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18B88D96192EB6730084ADC2 /* reportTypeSelection.xib */; };
+		18B88D99192EC1580084ADC2 /* zoneSelectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18B88D98192EC1580084ADC2 /* zoneSelectionView.xib */; };
 		18F5E9EE18E22E2800339B3C /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F5E9ED18E22E2800339B3C /* LoginViewController.m */; };
 		18F5E9F118E2317900339B3C /* myTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F5E9F018E2317900339B3C /* myTableViewController.m */; };
 		18F5E9F318E2350100339B3C /* class_list.csv in Resources */ = {isa = PBXBuildFile; fileRef = 18F5E9F218E2350100339B3C /* class_list.csv */; };
@@ -41,6 +47,12 @@
 
 /* Begin PBXFileReference section */
 		18947E3D18E7E42700F7C397 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		18B88D8E192EB5270084ADC2 /* zones.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = zones.csv; sourceTree = "<group>"; };
+		18B88D90192EB56C0084ADC2 /* zone1.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = zone1.csv; sourceTree = "<group>"; };
+		18B88D92192EB5730084ADC2 /* zone2.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = zone2.csv; sourceTree = "<group>"; };
+		18B88D94192EB5840084ADC2 /* zone3 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = zone3; sourceTree = "<group>"; };
+		18B88D96192EB6730084ADC2 /* reportTypeSelection.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = reportTypeSelection.xib; sourceTree = "<group>"; };
+		18B88D98192EC1580084ADC2 /* zoneSelectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = zoneSelectionView.xib; sourceTree = "<group>"; };
 		18F5E9EC18E22E2800339B3C /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		18F5E9ED18E22E2800339B3C /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		18F5E9EF18E2317900339B3C /* myTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myTableViewController.h; sourceTree = "<group>"; };
@@ -113,6 +125,10 @@
 			isa = PBXGroup;
 			children = (
 				18F5E9F218E2350100339B3C /* class_list.csv */,
+				18B88D8E192EB5270084ADC2 /* zones.csv */,
+				18B88D94192EB5840084ADC2 /* zone3 */,
+				18B88D90192EB56C0084ADC2 /* zone1.csv */,
+				18B88D92192EB5730084ADC2 /* zone2.csv */,
 				A9250A22165D0DCB007EEDA2 /* its app */,
 				A9250A1B165D0DCB007EEDA2 /* Frameworks */,
 				A9250A19165D0DCB007EEDA2 /* Products */,
@@ -156,6 +172,8 @@
 				18F96A68192B27630036EF78 /* MySplitViewController.m */,
 				18F5EA3B18E2463500339B3C /* myDetailViewController.h */,
 				18F5EA3C18E2463500339B3C /* myDetailViewController.m */,
+				18B88D98192EC1580084ADC2 /* zoneSelectionView.xib */,
+				18B88D96192EB6730084ADC2 /* reportTypeSelection.xib */,
 				18F5E9EF18E2317900339B3C /* myTableViewController.h */,
 				18F5E9F018E2317900339B3C /* myTableViewController.m */,
 				18F5E9EC18E22E2800339B3C /* LoginViewController.h */,
@@ -269,12 +287,18 @@
 				18F5E9F318E2350100339B3C /* class_list.csv in Resources */,
 				53F9A22518D66AC800578940 /* template2.mustache in Resources */,
 				538D77BB18E35FFA00F6206D /* rsz_1its.png in Resources */,
+				18B88D97192EB6730084ADC2 /* reportTypeSelection.xib in Resources */,
+				18B88D99192EC1580084ADC2 /* zoneSelectionView.xib in Resources */,
 				A9250A27165D0DCB007EEDA2 /* InfoPlist.strings in Resources */,
+				18B88D91192EB56C0084ADC2 /* zone1.csv in Resources */,
+				18B88D93192EB5730084ADC2 /* zone2.csv in Resources */,
+				18B88D8F192EB5270084ADC2 /* zones.csv in Resources */,
 				A9250A2F165D0DCC007EEDA2 /* Default.png in Resources */,
 				A9250A31165D0DCC007EEDA2 /* Default@2x.png in Resources */,
 				A9250A33165D0DCC007EEDA2 /* Default-568h@2x.png in Resources */,
 				A9250A36165D0DCC007EEDA2 /* MainStoryboard_iPhone.storyboard in Resources */,
 				A9250A39165D0DCC007EEDA2 /* MainStoryboard_iPad.storyboard in Resources */,
+				18B88D95192EB5840084ADC2 /* zone3 in Resources */,
 				A9250A56165D27E5007EEDA2 /* template1.mustache in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

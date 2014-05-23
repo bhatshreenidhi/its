@@ -26,5 +26,5 @@
 @property (nonatomic,strong) NSString * isStCorrect;
 @property (nonatomic,strong) NSString * isItCorrect;
 @property (nonatomic,strong) NSString * isIcCorrect;
-
+@property (nonatomic,strong) NSString *problem;
 @end

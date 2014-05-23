@@ -20,7 +20,8 @@
                 border : 1;
                 font-size: smaller;
             }
-            
+            .tftable tr.problem {color:red;font-size:16px;}
+            .problem td {border-color:#FF0000}
             .tftable {font-size:12px;color:#333333;width:100%;border-width: 1px;border-color: #729ea5;border-collapse: collapse;}
             .tftable th {font-size:12px;background-color:#acc8cc;border-width: 1px;padding: 8px;border-style: solid;border-color: #729ea5;text-align:left;}
             .tftable tr {background-color:#ffffff;}
@@ -67,8 +68,8 @@
                 </tr>
                 
                 {{#articles}}
-                <tr>
-                    <td>{{roomNo}}</td>
+                <tr class="{{problem}}">
+                    <td>{{problem}}</td>
                     <td>{{sc_count}}</td>
                     <td>{{isScCorrect}}</td>
                     <td>{{ic_count}}</td>

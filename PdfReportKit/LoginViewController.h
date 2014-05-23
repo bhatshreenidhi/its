@@ -14,5 +14,4 @@
 @property (weak, nonatomic) IBOutlet UITextField *login3;
 @property (weak, nonatomic) IBOutlet UITextField *login4;
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
-
 @end

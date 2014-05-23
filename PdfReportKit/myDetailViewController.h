@@ -22,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UISwitch *is_it;
 @property (weak, nonatomic) IBOutlet UISwitch *is_st;
 @property (weak, nonatomic) IBOutlet UISwitch *is_all;
+@property (nonatomic,weak) NSArray* rooms;
 @end
 
 

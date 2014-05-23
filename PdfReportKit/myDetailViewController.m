@@ -7,12 +7,17 @@
 //
 
 #import "myDetailViewController.h"
+#import "ViewController.h"
 #define kTabBarHeight 50
 @interface myDetailViewController ()
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (nonatomic) Classroom *classRoom;
 @property BOOL keyboardIsShown;
 @property (weak, nonatomic) IBOutlet UITextView *remarksView;
+@property (nonatomic,strong) NSString *zone,*typeOfReport;
+@property BOOL isHidden;
+@property (nonatomic,weak) UIView*reportSelectionView,*zoneView;
+
 @end
 
 @implementation myDetailViewController
@@ -29,6 +34,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    if (self.typeOfReport==nil) {
+        [self displayTypeOfReportSectionScreen];
+    }
     self.sc_count.text=self.ic_count.text=self.it_count.text=self.st_count.text=@"";
     //self.is_all.on= self.is_ic.on = self.is_it.on = self.is_sc.on = self.is_st.on = NO;
     [self.is_all addTarget:self action:@selector(allChanged:) forControlEvents:UIControlEventValueChanged];
@@ -52,6 +60,64 @@
     self.remarksView.delegate=self;
 }
 
+-(void)displayTypeOfReportSectionScreen{
+    [self hideMaster:self];
+    UIView *view =  [[NSBundle mainBundle] loadNibNamed:@"reportTypeSelection" owner:self options:nil][0];
+    self.reportSelectionView=view;
+    UIButton *closingButton,*openingbutton;
+    closingButton=[view subviews][1];
+    openingbutton =[view subviews][0];
+    [closingButton addTarget:self action:@selector(closePressed:) forControlEvents:UIControlEventTouchUpInside];
+    [openingbutton addTarget:self action:@selector(openPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:view];
+}
+-(IBAction)closePressed:(id)sender{
+    self.typeOfReport=@"Close";
+    [self showZoneSelectionView];
+}
+-(IBAction)openPressed:(id)sender{
+    self.typeOfReport=@"Open";
+    [self showZoneSelectionView];
+}
+-(void)showZoneSelectionView{
+    [UIView beginAnimations:@"curlup" context:nil];
+    [UIView setAnimationDuration:1];
+    [UIView setAnimationTransition:UIViewAnimationTransitionCurlUp forView:self.view cache:YES];
+    [self.reportSelectionView removeFromSuperview];
+    [UIView commitAnimations];
+    
+    UIView *view =  [[NSBundle mainBundle] loadNibNamed:@"zoneSelectionView" owner:self options:nil][0];
+    self.zoneView = view;
+    NSArray *zones=[self readZonesFromFile];
+    for (int i=0; i<zones.count; i++) {
+        UIButton *button=[UIButton buttonWithType:UIButtonTypeRoundedRect];
+        [button setTitle:zones[i] forState:UIControlStateNormal];
+        button.frame = CGRectMake(300,700-((i+1)*80), 150, 50.0);
+        button.titleLabel.font = [UIFont boldSystemFontOfSize:20];
+        [button.layer setBorderWidth:5];
+        [view addSubview:button];
+        [button addTarget:self action:@selector(zonePressed:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    [self.view addSubview:view];
+}
+
+-(IBAction)zonePressed:(UIButton*)button{
+    self.zone=button.titleLabel.text;
+    [UIView beginAnimations:@"curlup" context:nil];
+    [UIView setAnimationDuration:1];
+    [UIView setAnimationTransition:UIViewAnimationTransitionCurlUp forView:self.view cache:YES];
+    [self.zoneView removeFromSuperview];
+    [self unhideMaster:self];
+    [UIView commitAnimations];
+    
+}
+
+-(NSArray*)readZonesFromFile{
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"zones" ofType:@"csv"];
+    NSString *testString = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
+    NSArray *data = [testString componentsSeparatedByString:@"\n"];
+    return data;
+}
 - (void)orientationChanged:(NSNotification *)notification{
     [self.view endEditing:YES];
 }
@@ -71,10 +137,32 @@
     [UIView setAnimationBeginsFromCurrentState:YES];
     [self.view setFrame:viewFrame];
     [UIView commitAnimations];
-    
     self.keyboardIsShown = NO;
 }
 
+-(void)hideMaster:(id)hideState
+{
+    self.isHidden=YES;
+    [self.splitViewController.view setNeedsLayout];
+    self.splitViewController.delegate = self;
+    [self.splitViewController willRotateToInterfaceOrientation:[UIApplication sharedApplication].statusBarOrientation duration:0];
+    //also put your `MPMoviePlayerController` Fullscreen Method here
+}
+-(void)unhideMaster:(id)hideState
+{
+    self.isHidden=NO;
+    [self.splitViewController.view setNeedsLayout];
+    self.splitViewController.delegate = self;
+    [self.splitViewController willRotateToInterfaceOrientation:[UIApplication sharedApplication].statusBarOrientation duration:0];
+    //also put your `MPMoviePlayerController` Fullscreen Method here
+}
+
+-(BOOL)splitViewController:(UISplitViewController *)svc shouldHideViewController:(UIViewController *)vc inOrientation:(UIInterfaceOrientation)orientation
+{
+    if(!self.isHidden)
+        return orientation==UIInterfaceOrientationMaskPortrait;
+    return YES;
+}
 - (void)keyboardWillShow:(NSNotification *)n
 {
     if (self.keyboardIsShown) {
@@ -113,6 +201,7 @@
                     completion:NULL];
     //    [self .splitViewController.viewControllers]
 }
+
 - (IBAction)swipeRight:(id)sender {
     [UIView transitionWithView:self.view
                       duration:0.5
@@ -160,6 +249,7 @@
 - (void)textViewDidEndEditing:(UITextView *)textView{
     self.classRoom.remarks=textView.text;
 }
+
 - (void) updateViewWithObject:(Classroom *) classRoom{
     self.classRoom=classRoom;
     self.buildingName.text = classRoom.building;
@@ -176,4 +266,8 @@
     self.remarksView.text=classRoom.remarks;
 }
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    ViewController *report=segue.destinationViewController;
+    report.rooms=self.rooms;
+}
 @end

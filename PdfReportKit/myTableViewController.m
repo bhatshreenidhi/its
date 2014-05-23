@@ -68,7 +68,7 @@
     }
     [self.tableView reloadData];
     self.detailViewController = (myDetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
-    
+    self.detailViewController.rooms=self.articles;
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(nextRoom)
                                                  name:@"nextRequest"

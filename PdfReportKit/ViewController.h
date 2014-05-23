@@ -17,5 +17,5 @@
     NSDictionary * defaultValues;
 }
 @property(nonatomic,strong) IBOutlet UIWebView *webView;
-//@property(nonatomic,strong) NSMutableArray * articles;
+@property (nonatomic,strong) NSArray *rooms;
 @end
